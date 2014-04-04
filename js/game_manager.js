@@ -22,8 +22,9 @@ GameManager.prototype.restart = function () {
 
 // Keep playing after winning (allows going over 2048)
 GameManager.prototype.keepPlaying = function () {
-  this.keepPlaying = true;
+  this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
+  this.setup();
 };
 
 // Return true if the game is lost, or has won and the user hasn't kept playing
@@ -64,7 +65,7 @@ GameManager.prototype.setup = function () {
 
 // Set up the initial tiles to start the game with
 GameManager.prototype.addStartTiles = function () {
-  for (var i = 0; i < this.startTiles; i++) {
+  for (var i = 0; i < 2; i++) {
     this.addRandomTile();
   }
 };
